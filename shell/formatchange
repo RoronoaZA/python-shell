@@ -1,0 +1,34 @@
+import csv
+muhaha=[]
+with open('mimetypes','r') as f:
+    with open('test1167.csv','w',encoding='utf-8') as wf:
+        writer=csv.writer(wf)
+        reader=f.readline()
+        while reader:
+            if '#' in reader:
+                reader=f.readline()
+            elif len(reader.strip())==0:
+                reader=f.readline()
+            else:
+                muhaha=reader.strip().split(' ',1)
+                ohoho=muhaha[1].strip().replace(';','').split(' ')
+                for row in ohoho:
+                    if 'audio' in muhaha[0]:
+                        writer.writerow([row.upper(),muhaha[0],'音频'])
+                    elif 'image' in muhaha[0]:
+                        writer.writerow([row.upper(), muhaha[0], '图片'])
+                    elif 'video' in muhaha[0]:
+                        writer.writerow([row.upper(), muhaha[0], '视频'])
+                    elif 'text' in muhaha[0]:
+                        writer.writerow([row.upper(), muhaha[0], '文本'])
+                    elif 'compress' in muhaha[0]:
+                        writer.writerow([row.upper(), muhaha[0], '压缩'])
+                    elif 'extension' in muhaha[0] or 'java' in muhaha[0]:
+                        writer.writerow([row.upper(), muhaha[0], '软件'])
+                    else:
+                        writer.writerow([row.upper(), muhaha[0], '其他'])
+                reader=f.readline()
+
+
+
+
